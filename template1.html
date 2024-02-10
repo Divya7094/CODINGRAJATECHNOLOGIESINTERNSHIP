@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en" data-template="template1">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Template</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: lightblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: auto;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            height: auto;
+            margin: 50px;
+            background: #fff;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            box-shadow: 0 35px 55px rgba(0, 0, 0, 0.1);
+        }
+
+        .container .left_side {
+            position: relative;
+            background: #003147;
+            padding: 40px;
+        }
+
+        .profileText {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .profileText .imgBx {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .profileText .imgBx img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profileText h1 {
+            color: #fff;
+            font-size: 1.4em;
+            margin-top: 20px;
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: 600;
+            line-height: 1.4em;
+        }
+
+        .profileText h1 span {
+            font-size: 0.8em;
+            font-weight: 300;
+        }
+
+        .contactInfo {
+            padding-top: 40px;
+        }
+
+        .title {
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .contactInfo ul {
+            position: relative;
+        }
+
+        .contactInfo ul li {
+            position: relative;
+            list-style: none;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        .contactInfo ul li .icon {
+            display: inline-block;
+            width: 30px;
+            font-size: 18px;
+            color: #03a9f4;
+        }
+
+        .contactInfo ul li span {
+            color: #fff;
+            font-weight: 300;
+        }
+
+        .contactInfo.education li {
+            margin-bottom: 15px;
+        }
+
+        .contactInfo.education h5 {
+            color: #03a9f4;
+            font-weight: 500;
+        }
+
+        .contactInfo.education h4:nth-child(2) {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .contactInfo.education h4 {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .container .right_side {
+            position: relative;
+            background: #fff;
+            padding: 40px;
+        }
+
+        .about {
+            margin-bottom: 50px;
+        }
+
+        .about:last-child {
+            margin-bottom: 0;
+        }
+
+        .title2 {
+            color: #003147;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #333;
+        }
+
+        .about .box {
+            display: flex;
+            flex-direction: row;
+            margin: 20px 0;
+        }
+
+        .about .box .year_company {
+            min-width: 150px;
+        }
+
+        .about .box .year_company h5 {
+            text-transform: uppercase;
+            color: #848c90;
+            font-weight: 600;
+        }
+
+        .about .box .text h4 {
+            text-transform: uppercase;
+            color: #2a7da2;
+            font-size: 16px;
+        }
+
+        .skills .box {
+            position: relative;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .skills .box h4 {
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .interest ul {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .interest ul li {
+            list-style: none;
+            color: #333;
+            font-weight: 500;
+            margin: 10px 0;
+        }
+
+        @media(max-width:1000px) {
+            .container {
+                margin: 10px;
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .interest ul {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width:600px) {
+            .about .box {
+                flex-direction: column;
+            }
+
+            .about .box .year_company {
+                margin-bottom: 5px;
+            }
+
+            .interest ul {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="resume-container-template1">
+    <div class="left_side">
+        <div class="profileText">
+            <div class="imgBx" contenteditable="true" oninput="resumeEditor.editImage(this)">
+                <img src="img.png" alt="Profile Image" id="profile-image">
+            </div>
+            <h1 contenteditable="true">Leena<br><span contenteditable="true">Software developer</span></h1>
+        </div>
+        <div class="contactInfo">
+            <h3 class="title editable" contenteditable="true">Contact Info</h3>
+            <ul>
+                <li>
+                    <span class="icon"><i class='bx bxs-phone'></i></span>
+                    <span class="text" contenteditable="true">+91 234 5678 900</span>
+                </li>
+                <li>
+                    <span class="icon"><i class='bx bxs-envelope'></i></span>
+                    <span class="text" contenteditable="true">leena@gmail.com</span>
+                </li>
+                <li>
+                    <span class="icon"><i class='bx bxl-linkedin'></i></span>
+                    <span class="text" contenteditable="true">www.linkedin.com/me</span>
+                </li>
+                <li>
+                    <span class="icon"><i class='bx bx-world'></i></span>
+                    <span class="text" contenteditable="true">Bangalore, Karnataka, India</span>
+                </li>
+            </ul>
+        </div>
+        <div class="contactInfo education">
+            <h3 class="title editable" contenteditable="true">Education</h3>
+            <ul>
+                <li>
+                    <h5 contenteditable="true">2018-2022</h5>
+                    <h4 contenteditable="true">Bachelor degree in computer science</h4>
+                    <h4 contenteditable="true">University name</h4>
+                </li>
+                <li>
+                    <h5 contenteditable="true">2016-2018</h5>
+                    <h4 contenteditable="true">Science</h4>
+                    <h4 contenteditable="true">PU college name</h4>
+                </li>
+                <li>
+                    <h5 contenteditable="true">2003-2016</h5>
+                    <h4 contenteditable="true">School name</h4>
+                </li>
+            </ul>
+        </div>
+        <div class="contactInfo language">
+            <h3 class="title editable" contenteditable="true">Languages</h3>
+            <ul>
+                <li>
+                    <span class="text" contenteditable="true">English</span>
+                </li>
+                <li>
+                    <span class="text" contenteditable="true">Kannada</span>
+                </li>
+                <li>
+                    <span class="text" contenteditable="true">Hindi</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="right_side">
+        <div class="about">
+            <h2 class="title2 editable" contenteditable="true">Profile</h2>
+            <p contenteditable="true">Innovative and detail-oriented Software Developer with 6 years of hands-on experience in designing and implementing robust software solutions. Proficient in full-stack development, with expertise in languages such as Java, JavaScript, and Python. Skilled in collaborating with cross-functional teams to deliver high-quality code on schedule. Proven track record of identifying and solving complex technical challenges. A passionate learner committed to staying current with emerging technologies. Seeking a challenging role to apply my technical skills and contribute to the success of a forward-thinking software development team.</p>
+        </div>
+        <div class="about">
+            <h2 class="title2 editable" contenteditable="true">Experience</h2>
+            <div class="box">
+                <div class="year_company">
+                    <h5 contenteditable="true">2022-present</h5>
+                    <h5 contenteditable="true">Company Name</h5>
+                </div>
+                <div class="text">
+                    <h4 contenteditable="true">Software Developer</h4>
+                    <p contenteditable="true">Detail-oriented Software Engineer specializing in backend development, proficient in Java and Javascript. Known for collaborating effectively within cross-functional teams to deliver high-performance software solutions. </p>
+                </div>
+            </div>
+        </div>
+        <div class="about skills">
+            <h2 class="title2 editable" contenteditable="true">Professional Skills</h2>
+            <div class="box">
+                <h4 contenteditable="true">HTML</h4>
+            </div>
+            <div class="box">
+                <h4 contenteditable="true">CSS</h4>
+            </div>
+            <div class="box">
+                <h4 contenteditable="true">Java</h4>
+            </div>
+            <div class="box">
+                <h4 contenteditable="true">Javascript</h4>
+            </div>
+        </div>
+        <div class="about projects">
+            <h2 class="title2 editable" contenteditable="true">Projects</h2>
+            <div class="box">
+                <h4 contenteditable="true">Project Name 1</h4>
+                <p contenteditable="true">Description of the project...</p>
+            </div>
+            <div class="box">
+                <h4 contenteditable="true">Project Name 2</h4>
+                <p contenteditable="true">Description of the project...</p>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+<div class="live-preview">
+    <h2>Live Preview</h2>
+    <div id="preview-content">
+    </div>
+    <div class="download-buttons">
+        <button onclick="downloadPDF()">Download PDF Resume</button>
+        <button onclick="printPreview()">Print Preview</button>
+        
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<script src="common-functions.js"></script>
+<script>
+    function downloadPDF() {
+    const areaCV = document.getElementById('resume-container-template1');
+    const fullHeight = areaCV.scrollHeight;
+
+    window.scrollTo(0, 0);
+
+    html2canvas(areaCV, {
+        scrollY: -window.scrollY,
+        scale: 2,
+        windowWidth: document.documentElement.offsetWidth,
+        windowHeight: document.documentElement.offsetHeight,
+        useCORS: true,
+    }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'px', [areaCV.offsetWidth, fullHeight]);
+        pdf.addImage(imgData, 'PNG', 0, 0, areaCV.offsetWidth, fullHeight);
+        pdf.save('resume.pdf');
+        alert('PDF Resume download started!');
+    });
+}
+function printPreview() {
+        const previewContent = document.getElementById('preview-content').innerHTML;
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write('<html><head><title>Print Preview</title>');
+
+        printWindow.document.write('<style>');
+        printWindow.document.write(getStyles());
+        printWindow.document.write('</style>');
+
+        printWindow.document.write('</head><body>');
+        printWindow.document.write(previewContent);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.onload = function() {
+            printWindow.focus(); 
+            printWindow.print(); 
+            printWindow.close(); 
+        };
+    }
+
+    function getStyles() {
+        const styles = Array.from(document.styleSheets).map(styleSheet => {
+            try {
+                return Array.from(styleSheet.cssRules)
+                    .map(rule => rule.cssText)
+                    .join('');
+            } catch (error) {
+                console.error('Error parsing CSS rules:', error);
+                return '';
+            }
+        }).join('');
+
+        return styles;
+    }
+
+    function updateLivePreview() {
+        const previewContent = document.getElementById('preview-content');
+        previewContent.innerHTML = '';
+        const resumeContainer = document.querySelector('.container');
+        const clonedResumeContainer = resumeContainer.cloneNode(true);
+        previewContent.appendChild(clonedResumeContainer);
+    }
+
+    document.querySelectorAll('[contenteditable="true"]').forEach(element => {
+        element.addEventListener('input', updateLivePreview);
+    });
+    updateLivePreview();
+</script>
+
+</body>
+</html>

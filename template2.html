@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" data-template="template2">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Classic Resume Template</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .outer {
+            width: 700px;
+            height: 800px;
+            margin: 0px auto;
+        }
+
+        .outer h1 {
+            text-align: center;
+        }
+
+        p {
+            font-size: 20px;
+        }
+
+        .border {
+            width: 100%;
+            padding: 5px;
+            background-color: rgb(200, 200, 200);
+            border: 1px solid black;
+            font-weight: bold;
+        }
+
+        ul {
+            font-size: 20px;
+            margin-left: 20px;
+        }
+
+        h3 {
+            float: right;
+            font-size: 19pX;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between; 
+            margin: 0 100px; 
+        }
+
+        .template-container {
+            flex: 1;
+        }
+
+        .live-preview-container {
+            flex: 1;
+        }
+
+        .live-preview-container #preview-content {
+            max-width: 100%;
+        }
+
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 500px; 
+        }
+
+        .download-buttons button {
+            margin: 0 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container" id="resume-container-template2">
+        <div class="outer" >
+            <h1>Resume</h1>
+            <br>
+            <p contenteditable="true">
+                <b contenteditable="true">Deena</b><br>
+                Bangalore, Karnataka<br>
+                India<br>
+                <span contenteditable="true">1234567890</span><br>
+                <span contenteditable="true">deena@gmail.com</span><br>
+            </p>
+            <hr>
+            <hr>
+            <br>
+            <div class="border" contenteditable="true">
+                <i>CAREER OBJECTIVE:</i>
+                <span class="edit-btn" onclick="resumeEditor.editSection(this)"></span>
+            </div>
+            <br>
+            <p id="objective" contenteditable="true">
+                Seeking a [position] where I can contribute my skills and grow professionally
+            </p>
+            <br>
+            <div class="border" contenteditable="true">
+                <i>EDUCATIONAL QUALIFICATIONS:</i>
+                <span class="edit-btn" onclick="resumeEditor.editSection(this)"></span>
+            </div>
+            <br>
+            <ul id="edu1" contenteditable="true">
+                <li>Secondary education-ICSE Board</li>
+                <li>Higher secondary education-Pre University Board</li>
+                <li>B.E in Computer Science- VTU</li>
+            </ul>
+            <br>
+            <div class="border" contenteditable="true">
+                <i>EDUCATIONAL QUALIFICATIONS:</i>
+                <span class="edit-btn" onclick="resumeEditor.editSection(this)"></span>
+            </div>
+            <br>
+            <ul id="edu2" contenteditable="true">
+                <li>Secondary education-ICSE Board</li>
+                <li>Higher secondary education-Pre University Board</li>
+                <li>B.E in Computer Science- VTU</li>
+            </ul>
+            <br>
+            <div class="border" contenteditable="true">
+                <i>EDUCATIONAL QUALIFICATIONS:</i>
+                <span class="edit-btn" onclick="resumeEditor.editSection(this)"></span>
+            </div>
+            <br>
+            <ul id="edu3" contenteditable="true">
+                <li>Secondary education-ICSE Board</li>
+                <li>Higher secondary education-Pre University Board</li>
+                <li>B.E in Computer Science- VTU</li>
+            </ul>
+            <br>
+            <div class="border" contenteditable="true">
+                <i>TECHNICAL SKILLS:</i>
+                <span class="edit-btn" onclick="resumeEditor.editSection(this)"></span>
+            </div>
+            <br>
+            <ul id="skills" contenteditable="true">
+                <li>Microsoft Office</li>
+                <li>Java</li>
+                <li>Python</li>
+            </ul>
+            <br>
+            <div class="border" contenteditable="true">
+                <i>LANGUAGES:</i>
+                <span class="edit-btn" onclick="resumeEditor.editSection(this)"></span>
+            </div>
+            <br>
+            <ul id="languages" contenteditable="true">
+                <li>English</li>
+                <li>Kannada</li>
+                <li>Hindi</li>
+            </ul>
+            <br>
+            <div class="border" contenteditable="true">
+                <i>SKILLS:</i>
+                <span class="edit-btn" onclick="resumeEditor.editSection(this)"></span>
+            </div>
+            <br>
+            <ul id="otherSkills" contenteditable="true">
+                <li>Multitasking</li>
+                <li>Quick learner</li>
+                <li>Leadership skills</li>
+            </ul>
+            <br>
+            <div class="border" contenteditable="true">
+                <i>DECLARATION</i>
+                <span class="edit-btn" onclick="resumeEditor.editSection(this)"></span>
+            </div>
+            <br>
+            <p id="declaration" contenteditable="true">
+                I hereby declare that every information is true and I am solely responsible for its authenticity.
+            </p>
+            <p contenteditable="true">
+                DATE:__________________<br>
+                PLACE:_________________
+            </p>
+            <br>
+            <h3 contenteditable="true">(DEENA)</h3>
+        </div>
+        <div class="live-preview-container">
+            <div id="preview-content"></div>
+        </div>
+    </div>
+    <div class="download-buttons">
+        <button onclick="downloadPDF()">Download PDF Resume</button>
+        <button onclick="printPreview()">Print Preview</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+    <script src="common-functions.js"></script>
+
+    <script>
+        function downloadPDF() {
+    const areaCV = document.getElementById('preview-content');
+    const fullHeight = areaCV.scrollHeight;
+    const fullWidth = areaCV.offsetWidth;
+    const margin = 20; 
+
+    window.scrollTo(0, 0);
+
+    html2canvas(areaCV, {
+        scrollY: -window.scrollY,
+        scale: 2,
+        windowWidth: document.documentElement.offsetWidth,
+        windowHeight: document.documentElement.offsetHeight,
+        useCORS: true,
+        width: fullWidth + margin * 2,
+        height: fullHeight + margin * 2 
+    }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'px', [fullWidth + margin * 2, fullHeight + margin * 2]);
+        pdf.addImage(imgData, 'PNG', margin, margin, fullWidth, fullHeight);
+        pdf.save('resume.pdf');
+        alert('PDF Resume download started!');
+    });
+}
+
+function printPreview() {
+        const previewContent = document.getElementById('preview-content').innerHTML;
+
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write('<html><head><title>Print Preview</title>');
+
+        printWindow.document.write('<style>');
+        printWindow.document.write(getStyles());
+        printWindow.document.write('</style>');
+
+        printWindow.document.write('</head><body>');
+        printWindow.document.write(previewContent);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+
+        printWindow.onload = function() {
+            printWindow.focus(); 
+            printWindow.print(); 
+            printWindow.close(); 
+        };
+    }
+
+    function getStyles() {
+        const styles = Array.from(document.styleSheets).map(styleSheet => {
+            try {
+                return Array.from(styleSheet.cssRules)
+                    .map(rule => rule.cssText)
+                    .join('');
+            } catch (error) {
+                console.error('Error parsing CSS rules:', error);
+                return '';
+            }
+        }).join('');
+
+        return styles;
+    }
+        function updateLivePreview() {
+            const previewContent = document.getElementById('preview-content');
+            previewContent.innerHTML = '';
+            const resumeContainer = document.getElementById('resume-container-template2');
+            const clonedResumeContainer = resumeContainer.cloneNode(true);
+            previewContent.appendChild(clonedResumeContainer);
+        }
+
+        document.querySelectorAll('[contenteditable="true"]').forEach(element => {
+            element.addEventListener('input', updateLivePreview);
+        });
+        updateLivePreview();
+    </script>
+</body>
+
+</html>
+

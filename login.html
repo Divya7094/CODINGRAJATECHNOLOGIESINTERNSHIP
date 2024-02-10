@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Resume Creator Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="wrapper"> 
+        <form id="loginForm" onsubmit="return validateLoginForm()">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="email" placeholder="Email Address" required id="email">
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="Password" placeholder="Password" required id="password">
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox">Remember Me</label>
+                <a href="#" onclick="handleForgotPassword()">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <div id="loginError" class="error-message"></div> 
+        </form>
+        <div class="register-link">
+            <p>Don't have an account? <a href="register.html">Register</a></p>
+        </div>
+    </div>
+    <script>
+        function validateLoginForm() {
+  const email = document.querySelector("input[type='email']").value.trim();
+  const password = document.querySelector("input[type='password']").value.trim();
+
+  if (!email || !password) {
+    alert("Please fill in both email and password.");
+    return false;
+  }
+
+  var usersString = localStorage.getItem('users');
+  var users = usersString ? usersString.split(';') : [];
+
+  for (var i = 0; i < users.length; i++) {
+    var userData = users[i].split('|');
+    if (userData[1] === email && userData[2] === password) {
+      alert("Login successful!");
+      window.location.href = 'index.html';
+      return false;
+    }
+  }
+
+  alert("Invalid email or password.");
+  return false;
+}
+
+function handleForgotPassword() {
+  const email = prompt("Enter your email address:");
+  localStorage.setItem('resetToken', generateRandomToken());
+  alert("Password reset instructions have been sent to your email.");
+}
+function generateRandomToken() {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" data-template="template3">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Resume template</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif; 
+        }
+
+        body {
+            background-color: #00b6c4;
+        }
+
+        .container {
+            background: #f5f5f5;
+            max-width: 800px;
+            margin: 60px 10px; 
+            padding: 20px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            flex: 1;
+        }
+
+        .live-preview {
+            flex: 1; 
+            margin: 10px 10px; 
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        .header h1 {
+            margin-bottom: 10px;
+        }
+
+        .header h3 {
+            text-transform: uppercase;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .img-area {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 25px auto;
+            border: 15px groove deepskyblue;
+        }
+
+        .img-area img {
+            width: 100%;
+        }
+
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .left {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .left p {
+            line-height: 2;
+        }
+
+        .left ul li {
+            line-height: 2;
+        }
+
+        h2 {
+            background: #00b6c4;
+            padding: 15px;
+            color: #fff;
+            margin: 30px 0;
+            font-size: 20px;
+            border-radius: 0 50px 50px 0;
+        }
+
+        .right {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .right h3 {
+            margin-bottom: 15px;
+        }
+
+        .right p {
+            line-height: 2.9;
+        }
+
+        .right ul li {
+            line-height: 2;
+        }
+
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+            .container {
+                width: 95%;
+                height: auto;
+            }
+            h2 {
+                font-size: 18px;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .main {
+                flex-direction: column;
+            }
+            .left,
+            .right {
+                flex: none;
+                width: 100%;
+            }
+            .container {
+                width: 95%;
+                height: auto;
+            }
+            h2 {
+                font-size: 15px;
+            }
+        }
+
+        .live-preview h2 {
+            text-align: center;
+        }
+
+        .live-preview .download-buttons {
+            text-align: center;
+        }
+
+        .live-preview-container {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="live-preview-container">
+        <div class="container" id="resume-container-template3">
+            <div class="header" contenteditable="true">
+                <img src="img.png" alt="" width="150" height="150">
+            </div> 
+            <h1 style="text-align: center;" contenteditable="true">Nicholas</h1>   
+            <h3 style="text-align: center;" contenteditable="true">Web developer</h3>
+        
+            <div class="main">
+                <div class="left" contenteditable="true">
+                    <h2>Personal Information</h2>
+                    <p><strong>Name:</strong> Nicholas</p>
+                    <p><strong>Address:</strong> Delhi, India</p>
+                    <p><strong>Email:</strong> nico@gmail.com</p>
+                    <p><strong>Phone:</strong> 123-456-7890</p>
+                    <h2>Technical Skills</h2>
+                    <ul contenteditable="true">
+                        <li>HTML/CSS</li>
+                        <li>Java</li>
+                        <li>Python</li>
+                    </ul>
+                    <h2>Education</h2>
+                    <h3 contenteditable="true">B.E in computer science</h3>
+                    <p contenteditable="true">University of XXY, 2015-2019</p><br>
+                    <h2>Skills</h2>
+                    <ul contenteditable="true">
+                        <li>Multitasking</li>
+                        <li>Quick learner</li>
+                        <li>Leadership skills</li>
+                    </ul>
+                </div>
+                <div class="right" contenteditable="true">
+                    <h2>Work Experience</h2>
+                    <h3 contenteditable="true">ABC company</h3>
+                    <p><strong>Position:</strong> Software Developer</p>
+                    <p><strong>Duration:</strong> 2020-2023</p>
+                    <ul contenteditable="true">
+                        <li>Developed web applications using Python, HTML, Node.js, and SQL</li>
+                    </ul>
+                    <h2>Languages</h2>
+                    <ul contenteditable="true">
+                        <li>English</li>
+                        <li>Kannada</li>
+                        <li>Hindi</li>
+                    </ul>
+                    <h2>Interests</h2>
+                    <ul contenteditable="true">
+                        <li>Arts</li>
+                        <li>Music</li>
+                        <li>Travelling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="live-preview">
+            <h2>Live Preview</h2>
+            <div id="resume-preview-template3"></div>
+            <div class="download-buttons">
+                <button onclick="downloadPDF()">Download PDF Resume</button>
+                <button onclick="printPreview()">Print Preview</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+    <script src="common-functions.js"></script>
+    <script>
+        function downloadPDF() {
+            const areaCV = document.getElementById('resume-container-template3');
+            const fullHeight = areaCV.scrollHeight;
+
+            window.scrollTo(0, 0);
+
+            html2canvas(areaCV, {
+                scrollY: -window.scrollY,
+                scale: 2,
+                windowWidth: document.documentElement.offsetWidth,
+                windowHeight: document.documentElement.offsetHeight,
+                useCORS: true,
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF('p', 'px', [areaCV.offsetWidth, fullHeight]);
+                pdf.addImage(imgData, 'PNG', 0, 0, areaCV.offsetWidth, fullHeight);
+                pdf.save('resume.pdf');
+                alert('PDF Resume download started!');
+            });
+        }
+        function printPreview() {
+        const previewContent = document.getElementById('resume-preview-template3').innerHTML;
+
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write('<html><head><title>Print Preview</title>');
+
+        printWindow.document.write('<style>');
+        printWindow.document.write(getStyles());
+        printWindow.document.write('</style>');
+
+        printWindow.document.write('</head><body>');
+        printWindow.document.write(previewContent);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+
+        printWindow.onload = function() {
+            printWindow.focus(); 
+            printWindow.print();
+            printWindow.close(); 
+        };
+    }
+
+    function getStyles() {
+        const styles = Array.from(document.styleSheets).map(styleSheet => {
+            try {
+                return Array.from(styleSheet.cssRules)
+                    .map(rule => rule.cssText)
+                    .join('');
+            } catch (error) {
+                console.error('Error parsing CSS rules:', error);
+                return '';
+            }
+        }).join('');
+
+        return styles;
+    }
+        function updateLivePreview() {
+            const previewContent = document.getElementById('resume-preview-template3'); 
+            previewContent.innerHTML = '';
+            const resumeContainer = document.querySelector('.container');
+            const clonedResumeContainer = resumeContainer.cloneNode(true);
+            previewContent.appendChild(clonedResumeContainer);
+        }
+
+        document.querySelectorAll('[contenteditable="true"]').forEach(element => {
+            element.addEventListener('input', updateLivePreview);
+        });
+        updateLivePreview();
+    </script>
+</body>
+</html>
+
